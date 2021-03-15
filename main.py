@@ -8,12 +8,12 @@ pwd = os.path.abspath(os.getcwd())
 image_path = f"{pwd}/images"
 
 def distance(x, y, i, j):
-    return np.sqrt((x-i)*2 + (y-j)*2)
+    return np.sqrt((x-i)**2 + (y-j)**2)
 
 
 def gaussian(x, sigma):
     pi = math.pi
-    return (1.0 / (2 * pi * (sigma * 2))(1/2)) * math.exp(- (x * 2) / (2 * sigma ** 2))
+    return (1.0 / (2 * pi * (sigma ** 2))**(1/2)) * math.exp(- (x ** 2) / (2 * sigma ** 2))
 
 def find_neighbours(source, x, y,x_def, y_def):
     neighbour_x = x - x_def
@@ -59,7 +59,7 @@ def bilateral_filter_own(source, filter_diameter, sigma_i, sigma_s):
     return filtered_image
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     src = cv2.imread(f"{image_path}/03.png", 0)
     filtered_image_OpenCV = cv2.bilateralFilter(src, 5, 12.0, 16.0)
     cv2.imwrite("original_image_grayscale.png", src)
